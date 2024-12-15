@@ -7,7 +7,7 @@ def call(String namespace) {
         sh """
             export KUBECONFIG=${KUBECONFIG}
             kubectl apply -f deployment.yaml --namespace=${namespace}
-            kubectl rollout status deployment/your-app --namespace=${namespace}
+            get pods --namespace=${namespace}
         """
     }
 }
