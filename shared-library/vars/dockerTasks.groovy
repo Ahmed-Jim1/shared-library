@@ -2,7 +2,7 @@
 def buildDockerImage(String imageName, String buildNumber, String buildPath) {
     echo "Building Docker image: ${imageName}:${buildNumber}..."
     sh """
-        cd ${buildPath}
+        
         docker build -t ${imageName}:${buildNumber} .
     """
 }
