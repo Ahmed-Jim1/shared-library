@@ -1,9 +1,9 @@
 // vars/dockerTasks.groovy
-def buildDockerImage(String imageName, String buildNumber, String buildPath) {
+def buildDockerImage(String imageName, String buildNumber) {
     echo "Building Docker image: ${imageName}:${buildNumber}..."
     sh """
-        
         docker build -t ${imageName}:${buildNumber} .
+
     """
 }
 
@@ -11,6 +11,7 @@ def dockerLogin(String username, String password) {
     echo "Logging in to Docker Hub..."
     sh """
         echo "${password}" | docker login -u "${username}" --password-stdin
+
     """
 }
 
@@ -19,6 +20,7 @@ def pushDockerImage(String imageName, String buildNumber, String repoName) {
     sh """
         docker tag ${imageName}:${buildNumber} ${repoName}/${imageName}:latest
         docker push ${repoName}/${imageName}:latest
+
     """
 }
 
@@ -27,5 +29,6 @@ def dockerCleanup() {
     sh """
         docker logout
         docker image prune -f
+        
     """
 }
