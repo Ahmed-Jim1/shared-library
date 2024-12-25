@@ -6,7 +6,7 @@ def call(String namespace) {
         // Deploy to Kubernetes using the provided namespace
         sh """
             export KUBECONFIG=${KUBECONFIG}
-            kubectl apply -f deployment.yaml --namespace=${namespace}
+            kubectl create deployment ivolve --image=docker.io/ahmedmahmood44/ivolve:latest --namespace=${namespace}
             kubectl get pods --namespace=${namespace}
         """
     }
